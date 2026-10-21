@@ -1,0 +1,7 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService
+                serviceInterface="dev.changestree.smartchanges.git.GitChangesSource"
+                serviceImplementation="dev.changestree.smartchanges.git.GitChangesAdapter"/>
+    </extensions>
+</idea-plugin>

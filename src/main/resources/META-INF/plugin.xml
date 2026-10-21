@@ -1,0 +1,28 @@
+<idea-plugin>
+    <id>dev.changestree.smartchanges</id>
+    <name>Smart Changes</name>
+    <vendor>Dmitriy Bardin</vendor>
+    <description><![CDATA[
+<p>Smart Changes adds a focused view of local changes to the Commit tool window in WebStorm, helping you navigate large change sets and prepare commits.</p>
+<ul>
+    <li>Sort files by name, type, or path, and optionally group them by file extension.</li>
+    <li>Hide unrelated files from the main list, then review or restore them in a separate hidden view. Hidden paths and view preferences are saved per project.</li>
+    <li>See separate Staged and Unstaged rows when a Git file has changes in both areas. Use checkboxes to stage or unstage changes through the IDE's native Git actions.</li>
+    <li>Open diffs, copy file paths, and access native VCS context actions with familiar file icons and status colors.</li>
+    <li>Write a commit message and start the native Commit or Commit and Push workflow from the same panel.</li>
+</ul>
+<p>The view refreshes automatically as VCS changes are reported. Git staging support follows the IDE's staging-area setting; standard VCS change lists remain available when staging is disabled.</p>
+<p>Hiding files only affects the Smart Changes view: it does not modify files or change their staging state. If hidden files are already staged, Smart Changes warns you before opening the native commit workflow.</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.vcs</depends>
+    <depends optional="true" config-file="smart-changes-git.xml">Git4Idea</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <changesViewContent
+                tabName="Smart Changes"
+                className="dev.changestree.smartchanges.ui.SmartChangesContentProvider"
+                isInCommitToolWindow="true"/>
+    </extensions>
+</idea-plugin>
