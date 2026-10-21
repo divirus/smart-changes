@@ -4,7 +4,9 @@ Smart Changes is an open-source WebStorm plugin that adds a sortable changes vie
 
 ## Preview
 
-![Smart Changes tab in the WebStorm Commit tool window](docs/images/smart-changes.png)
+<p align="center">
+  <img src="docs/images/smart-changes.png" alt="Smart Changes tab in the WebStorm Commit tool window" width="640">
+</p>
 
 ## Features
 
