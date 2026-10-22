@@ -78,3 +78,11 @@ tasks.test {
     // These regression tests use platform data types without booting an IDE.
     classpath += sourceSets["test"].compileClasspath
 }
+
+// PluginLogo also supports icons in the installed plugin directory before scanning JARs.
+tasks.buildPlugin {
+    from("src/main/resources/META-INF") {
+        include("pluginIcon*.svg")
+        into("META-INF")
+    }
+}
