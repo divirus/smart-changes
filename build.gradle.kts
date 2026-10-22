@@ -20,7 +20,12 @@ repositories {
 dependencies {
     testImplementation("junit:junit:4.13.2")
     intellijPlatform {
-        webstorm(targetWebStormVersion)
+        val localIdePath = providers.gradleProperty("localIdePath")
+        if (localIdePath.isPresent) {
+            local(localIdePath.get())
+        } else {
+            webstorm(targetWebStormVersion)
+        }
         bundledModule("intellij.platform.vcs.impl")
         bundledPlugin("Git4Idea")
         pluginVerifier("1.411")
