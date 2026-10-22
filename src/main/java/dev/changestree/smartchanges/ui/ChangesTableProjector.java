@@ -160,6 +160,7 @@ final class ChangesTableProjector {
             case NAME -> comparing(ChangedItem::getName);
             case TYPE -> comparing(item -> typeName(item.getExtension()));
             case PATH -> comparing(ChangedItem::getPath);
+            case MODIFIED -> Comparator.comparingLong(ChangedItem::getLastModified);
         };
         Comparator<ChangedItem> tieBreaker = comparing(ChangedItem::getPath)
                 .thenComparing(ChangedItem::getName, String.CASE_INSENSITIVE_ORDER);

@@ -10,7 +10,7 @@ Smart Changes is an open-source WebStorm plugin that adds a sortable changes vie
 
 ## Features
 
-- Sort changed files by name, file type, or path; optionally group them by extension.
+- Sort changed files by name, file type, path, or modification time; optionally group them by extension.
 - Hide unrelated changes from the main list and restore them from a separate hidden list. Hidden paths and view preferences are saved per project.
 - In Git staging mode, show separate staged and unstaged rows when a file has changes in both areas. Stage and unstage through native IDE actions.
 - Open diffs, copy paths, and use native VCS context actions.
@@ -43,3 +43,5 @@ To install it in WebStorm, open **Settings → Plugins**, choose **Install Plugi
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+Modification-time sorting uses filesystem timestamps captured with each snapshot; deleted files have no timestamp. This is not Git commit or staging time.

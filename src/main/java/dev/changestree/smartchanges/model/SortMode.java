@@ -3,7 +3,8 @@ package dev.changestree.smartchanges.model;
 public enum SortMode {
     NAME("Name"),
     TYPE("Type"),
-    PATH("Path");
+    PATH("Path"),
+    MODIFIED("Modified");
 
     private final String label;
 
@@ -20,6 +21,7 @@ public enum SortMode {
             case 0 -> NAME;
             case 1 -> TYPE;
             case 2 -> PATH;
+            case 3 -> MODIFIED;
             default -> NAME;
         };
     }

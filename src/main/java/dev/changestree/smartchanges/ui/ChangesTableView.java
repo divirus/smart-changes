@@ -537,7 +537,7 @@ final class ChangesTableView extends JPanel {
     }
 
     private static final class ChangesTableModel extends AbstractTableModel {
-        private static final String[] COLUMNS = {"Name", "Type", "Path"};
+        private static final String[] COLUMNS = {"Name", "Type", "Path", "Modified"};
         private List<ChangesTableProjector.Row> rows = List.of();
 
         void setRows(List<ChangesTableProjector.Row> rows) {
@@ -576,6 +576,10 @@ final class ChangesTableView extends JPanel {
                 case 0 -> row.getNameValue();
                 case 1 -> row.getTypeValue();
                 case 2 -> row.getPathValue();
+                case 3 -> row.isGroup() || row.item().getLastModified() == 0 ? ""
+                        : java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                        .withZone(java.time.ZoneId.systemDefault())
+                        .format(java.time.Instant.ofEpochMilli(row.item().getLastModified()));
                 default -> "";
             };
         }

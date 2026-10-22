@@ -394,7 +394,7 @@ final class SmartChangesPanel extends JPanel implements ChangeListListener, UiCo
             settings.setAscending(!settings.isAscending());
         } else {
             settings.setSortMode(clicked);
-            settings.setAscending(true);
+            settings.setAscending(clicked != SortMode.MODIFIED);
         }
         renderSnapshot();
     }

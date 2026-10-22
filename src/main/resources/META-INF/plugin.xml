@@ -5,7 +5,7 @@
     <description><![CDATA[
 <p>Smart Changes adds a focused view of local changes to the Commit tool window in WebStorm, helping you navigate large change sets and prepare commits.</p>
 <ul>
-    <li>Sort files by name, type, or path, and optionally group them by file extension.</li>
+    <li>Sort files by name, type, path, or modification time, and optionally group them by file extension.</li>
     <li>Hide unrelated files from the main list, then review or restore them in a separate hidden view. Hidden paths and view preferences are saved per project.</li>
     <li>See separate Staged and Unstaged rows when a Git file has changes in both areas. Use checkboxes to stage or unstage changes through the IDE's native Git actions.</li>
     <li>Open diffs, copy file paths, and access native VCS context actions with familiar file icons and status colors.</li>

@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.Locale;
 
 public final class ChangedItem {
+    private final long lastModified;
     private final Change change;
     private final FilePath filePath;
     private final String beforePath;
@@ -32,6 +33,8 @@ public final class ChangedItem {
             Object gitStatusNode,
             FileStatus fileStatus
     ) {
+        File localFile = filePath.getIOFile();
+        this.lastModified = localFile == null ? 0 : localFile.lastModified();
         this.change = change;
         this.filePath = filePath;
         this.beforePath = beforePath;
@@ -44,6 +47,10 @@ public final class ChangedItem {
         this.fileStatus = fileStatus != null
                 ? fileStatus
                 : change != null ? change.getFileStatus() : unversioned ? FileStatus.UNKNOWN : null;
+    }
+
+    public long getLastModified() {
+        return lastModified;
     }
 
     public Change getChange() {
