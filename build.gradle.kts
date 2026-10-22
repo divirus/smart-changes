@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.changestree"
-version = "0.5.17"
+version = "0.5.19"
 
 val targetWebStormVersion = "2026.1.2"
 
@@ -62,7 +62,7 @@ intellijPlatform {
 <p>The view refreshes automatically as VCS changes are reported. Git staging support follows the IDE's staging-area setting; standard VCS change lists remain available when staging is disabled.</p>
 <p>Hiding files only affects the Smart Changes view: it does not modify files or change their staging state. If hidden files are already staged, Smart Changes warns you before opening the native commit workflow.</p>
         """.trimIndent()
-        changeNotes = "Fix panel disposal, mixed-VCS commit selection, secondary mouse clicks, and workspace settings validation."
+        changeNotes = "Add modification-time sorting, configurable column visibility, a refreshed plugin logo, and remove the upper IDE build limit."
     }
 
     pluginVerification {
