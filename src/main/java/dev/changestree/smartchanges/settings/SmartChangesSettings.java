@@ -15,6 +15,7 @@ import java.util.List;
 @State(name = "SmartChangesSettings", storages = @Storage(StoragePathMacros.WORKSPACE_FILE))
 public final class SmartChangesSettings implements PersistentStateComponent<SmartChangesSettings.State> {
     public static final class State {
+        public List<String> hiddenColumns = new ArrayList<>();
         public String sortMode = SortMode.NAME.name();
         // Retained so existing workspace settings from older builds deserialize cleanly.
         public String groupMode = "EXTENSION";
@@ -42,7 +43,17 @@ public final class SmartChangesSettings implements PersistentStateComponent<Smar
         state.hiddenFilePaths = state.hiddenFilePaths.stream()
                 .filter(path -> path != null && !path.isBlank()).distinct()
                 .collect(java.util.stream.Collectors.toCollection(ArrayList::new));
+        if (state.hiddenColumns == null) state.hiddenColumns = new ArrayList<>();
         this.state = state;
+    }
+
+    public boolean isColumnVisible(SortMode mode) {
+        return mode == SortMode.NAME || !state.hiddenColumns.contains(mode.name());
+    }
+
+    public void setColumnVisible(SortMode mode, boolean visible) {
+        state.hiddenColumns.removeIf(mode.name()::equals);
+        if (!visible && mode != SortMode.NAME) state.hiddenColumns.add(mode.name());
     }
 
     public SortMode getSortMode() {

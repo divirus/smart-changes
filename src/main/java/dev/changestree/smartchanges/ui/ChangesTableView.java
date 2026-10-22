@@ -136,6 +136,50 @@ final class ChangesTableView extends JPanel {
         table.getColumnModel().getColumn(1).setMaxWidth(JBUI.scale(160));
 
         configureSortableHeader();
+        java.util.List<javax.swing.table.TableColumn> availableColumns = java.util.Collections.list(
+                table.getColumnModel().getColumns());
+        DefaultActionGroup columnsMenu = new DefaultActionGroup();
+        for (javax.swing.table.TableColumn column : availableColumns) {
+            SortMode mode = SortMode.forColumn(column.getModelIndex());
+            columnsMenu.add(new com.intellij.openapi.actionSystem.ToggleAction(mode.getLabel()) {
+                @Override
+                public @NotNull ActionUpdateThread getActionUpdateThread() {
+                    return ActionUpdateThread.EDT;
+                }
+
+                @Override
+                public void update(@NotNull AnActionEvent event) {
+                    super.update(event);
+                    event.getPresentation().setEnabled(mode != SortMode.NAME);
+                }
+
+                @Override
+                public boolean isSelected(@NotNull AnActionEvent event) {
+                    return settings.isColumnVisible(mode);
+                }
+
+                @Override
+                public void setSelected(@NotNull AnActionEvent event, boolean visible) {
+                    settings.setColumnVisible(mode, visible);
+                    if (visible) {
+                        table.addColumn(column);
+                        int target = 0;
+                        while (target < table.getColumnCount() - 1
+                                && table.convertColumnIndexToModel(target) < column.getModelIndex()) target++;
+                        table.moveColumn(table.getColumnCount() - 1, target);
+                    } else {
+                        table.removeColumn(column);
+                        if (settings.getSortMode() == mode) listener.sortBy(SortMode.NAME);
+                    }
+                }
+            });
+            if (!settings.isColumnVisible(mode)) table.removeColumn(column);
+        }
+        if (!settings.isColumnVisible(settings.getSortMode())) {
+            settings.setSortMode(SortMode.NAME);
+            settings.setAscending(true);
+        }
+        PopupHandler.installPopupMenu(table.getTableHeader(), columnsMenu, "SmartChangesColumns");
         table.getTableHeader().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent event) {
