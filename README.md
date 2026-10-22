@@ -19,7 +19,7 @@ Smart Changes is an open-source WebStorm plugin that adds a sortable changes vie
 
 ## Compatibility
 
-- WebStorm 2026.1.x (build 261)
+- WebStorm 2026.1+ (build 261+; build SDK: 2026.1.2)
 - Java 21 to build the plugin
 
 ## Build
@@ -38,7 +38,7 @@ To install it in WebStorm, open **Settings → Plugins**, choose **Install Plugi
 
 - Hiding a change only affects the Smart Changes view. It does not edit files or change their staging state. If hidden changes are staged, the plugin warns before opening the commit workflow.
 - The plugin registers a Smart Changes tab inside the Commit tool window. It refreshes as the IDE reports VCS or staging-area changes.
-- The build targets WebStorm 2026.1.2. The plugin descriptor limits compatibility to build 261; targeting another IDE branch requires updating and verifying that range.
+- The build targets WebStorm 2026.1.2. The plugin descriptor has no upper build limit. Compatibility with newer IDE versions requires Plugin Verifier and manual testing.
 
 ## License
 

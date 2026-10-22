@@ -43,7 +43,7 @@ intellijPlatform {
         name = "Smart Changes"
         ideaVersion {
             sinceBuild = "261"
-            untilBuild = "261.*"
+            untilBuild = provider { null }
         }
         description = """
 <p>Smart Changes adds a focused view of local changes to the Commit tool window in WebStorm, helping you navigate large change sets and prepare commits.</p>
